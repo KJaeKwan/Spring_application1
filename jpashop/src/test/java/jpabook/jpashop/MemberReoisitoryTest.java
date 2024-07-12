@@ -1,5 +1,7 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +16,8 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class MemberReoisitoryTest {
 
-    @Autowired MemberReoisitory memberReoisitory;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Test
     @Transactional //테스트에 있으면 테스트 끝난 후 롤백
