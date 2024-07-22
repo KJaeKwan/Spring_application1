@@ -22,6 +22,9 @@ public class jpaMain {
             Member member = em.find(Member.class, 150L);
             member.setName("ZZZZZ");
 
+            em.flush();
+
+            System.out.println("==========");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
