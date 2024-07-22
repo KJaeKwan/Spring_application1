@@ -1,18 +1,17 @@
 package hellojpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
 public class Member {
 
     @Id
     private Long id;
-    @Column(name = "username")
     private String name;
+    private int age;
 
     public Long getId() {
         return id;
