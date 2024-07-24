@@ -17,13 +17,26 @@ public class jpaMain {
 
         try {
 
-            //영속
-            Member member = em.find(Member.class, 150L);
-            member.setName("ZZZZZ");
+            //저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
 
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+            em.persist(member);
+
+            //쿼리 나가는 것을 보고싶다면
             em.flush();
+            em.clear();
 
-            System.out.println("==========");
+            //조회
+            Member findMember = em.find(Member.class, member.getId());
+
+            Team findTeam = findMember.getTeam();
+            System.out.println("findTeam = " + findTeam.getName());
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
