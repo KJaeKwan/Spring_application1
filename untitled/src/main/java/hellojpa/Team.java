@@ -23,6 +23,12 @@ public class Team {
     @OneToMany(mappedBy = "team") //team과 연결되어있다
     private List<Member> members = new ArrayList<>();
 
+    public void addMember(Member member) {
+        member.setTeam(this);
+        members.add(member);
+        //양방향 연관관계에서 양쪽에 값을 다 넣어줘야하는데 이를 까먹지 않게 편의 메소드로 생성
+    }
+
     public Long getId() {
         return id;
     }
@@ -46,4 +52,5 @@ public class Team {
     public void setMembers(List<Member> members) {
         this.members = members;
     }
+
 }

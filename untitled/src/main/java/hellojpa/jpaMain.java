@@ -29,17 +29,11 @@ public class jpaMain {
             member.setTeam(team);
             em.persist(member);
 
+            team.addMember(member);
+
             //쿼리 나가는 것을 보고싶다면
             em.flush();
             em.clear();
-
-            //조회
-            Member findMember = em.find(Member.class, member.getId());
-            List<Member> members = findMember.getTeam().getMembers();
-
-            for (Member m : members) {
-                System.out.println("m = " + m.getUsername());
-            }
 
             tx.commit();
         } catch (Exception e) {
