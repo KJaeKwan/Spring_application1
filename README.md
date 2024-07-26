@@ -1,2 +1,0 @@
-- 실습은 ___test___ branch
-- 실전 예제는 ___master___ branch
