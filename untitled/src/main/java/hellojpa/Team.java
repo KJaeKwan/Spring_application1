@@ -20,14 +20,9 @@ public class Team {
      * 둘 중의 하나를 <연관관계의 주인>으로.. mappedBy가 있는 쪽은 주인이 아니다(읽기만 가능)
      * 다쪽이 연관관계의 주인으로 하자
      * */
-    @OneToMany(mappedBy = "team") //team과 연결되어있다
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<>();
-
-    public void addMember(Member member) {
-        member.setTeam(this);
-        members.add(member);
-        //양방향 연관관계에서 양쪽에 값을 다 넣어줘야하는데 이를 까먹지 않게 편의 메소드로 생성
-    }
 
     public Long getId() {
         return id;
@@ -52,5 +47,4 @@ public class Team {
     public void setMembers(List<Member> members) {
         this.members = members;
     }
-
 }

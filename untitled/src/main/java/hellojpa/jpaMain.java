@@ -19,21 +19,16 @@ public class jpaMain {
 
         try {
 
-            //저장
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
-
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+
             em.persist(member);
 
-            team.addMember(member);
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
 
-            //쿼리 나가는 것을 보고싶다면
-            em.flush();
-            em.clear();
+            em.persist(team);
 
             tx.commit();
         } catch (Exception e) {
