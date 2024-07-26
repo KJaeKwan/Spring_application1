@@ -1,9 +1,7 @@
 package hellojpa;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
+import org.hibernate.Hibernate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,19 +18,23 @@ public class jpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setUsername("user1");
-            member.setCreatedBy("kim");
-            member.setCreatedDate(LocalDateTime.now());
+            Member member1 = new Member();
+            member1.setUsername("member1");
+            em.persist(member1);
 
-            em.persist(member);
-            
             em.flush();
             em.clear();
+
+            Member refMember = em.getReference(Member.class, member1.getId());
+            System.out.println("referene = " + refMember.getClass());
+            Hibernate.initialize(refMember); //프록시 강제 초기화
+//            refMember.getUsername();
+            System.out.println("isLoaded = " + emf.getPersistenceUnitUtil().isLoaded(refMember)); //초기화 여부 확인
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }
