@@ -1,0 +1,2 @@
+- 기본 실습 => __test__ branch
+- jpql 실습 => __jpql__ branch
