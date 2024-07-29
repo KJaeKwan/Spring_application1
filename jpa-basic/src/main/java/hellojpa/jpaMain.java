@@ -18,11 +18,23 @@ public class jpaMain {
 
         try {
 
+            Address address = new Address("city", "street", "10000");
+
             Member member = new Member();
-            member.setUsername("helle");
-            member.setHomeAddress(new Address("city", "street", "10000"));
-            member.setWorkPeriod(new Period());
+            member.setUsername("member1");
+            member.setHomeAddress(address);
             em.persist(member);
+
+            //변경하려면 통으로 바꿔야 함
+            Address newAddress = new Address("newCity", address.getStreet(), address.getZipcode());
+            member.setHomeAddress(newAddress);
+
+//            Address address1 = new Address(address.getCity(), address.getStreet(), address.getZipcode());
+//
+//            Member member2 = new Member();
+//            member2.setUsername("member2");
+//            member2.setHomeAddress(address1);
+//            em.persist(member2);
 
             tx.commit();
         } catch (Exception e) {
