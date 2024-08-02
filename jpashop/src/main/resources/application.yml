@@ -5,8 +5,8 @@ spring:
     password:
     driver-class-name: org.h2.Driver
   jpa:
-    hibernate: #띄어쓰기 4칸
-      ddl-auto: create #띄어쓰기 6칸
+    hibernate:
+      ddl-auto: none
     properties: #띄어쓰기 4칸
       hibernate: #띄어쓰기 6칸
         show_sql: true #띄어쓰기 8칸
