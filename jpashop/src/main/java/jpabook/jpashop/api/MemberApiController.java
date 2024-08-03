@@ -34,6 +34,7 @@ public class MemberApiController {
         return new Result(collect);
     }
 
+
     //유연성을 위해 껍데기를 한번 감싸준다
     @Data
     @AllArgsConstructor
