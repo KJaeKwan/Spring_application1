@@ -66,9 +66,4 @@ public class OrderSimpleApiController {
 
         return result;
     }
-
-    @GetMapping("/api/v4/simple-orders")
-    public List<OrderSimpleQueryDto> ordersV4() {
-        return orderSimpleQueryRepository.findOrderDtos();
-    }
 }

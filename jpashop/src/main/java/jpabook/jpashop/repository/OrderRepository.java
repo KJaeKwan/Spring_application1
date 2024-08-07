@@ -96,8 +96,6 @@ public class OrderRepository {
         ).getResultList();
     }
 
-    public List<OrderSimpleApiController.SimpleOrderDto> findOrderDtos() {
-    }
 
 
 }
