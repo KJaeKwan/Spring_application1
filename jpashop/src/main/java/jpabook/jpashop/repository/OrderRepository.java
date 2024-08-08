@@ -97,5 +97,25 @@ public class OrderRepository {
     }
 
 
+    public List<Order> findAllWithItem() {
+        // 나중엔 쿼리dsl로 바꿔서 하자
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+        // 참고로 컬렉션 패치 조인을 사용하면 페이징이 불가 - DB와 차이 때문에(distinct)
+    }
 
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }
